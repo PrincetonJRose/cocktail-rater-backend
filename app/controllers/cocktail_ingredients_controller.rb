@@ -1,0 +1,2 @@
+class CocktailIngredientsController < ApplicationController
+end
