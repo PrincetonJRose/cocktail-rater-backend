@@ -1,4 +1,4 @@
 class CocktailIngredient < ApplicationRecord
-    belongs_to :cocktail, optional: true
-    belongs_to :ingredient, optional: true
+    belongs_to :cocktail, optional: true, dependent: :destroy
+    belongs_to :ingredient, optional: true, dependent: :destroy
 end
