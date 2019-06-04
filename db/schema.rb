@@ -10,10 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_141711) do
+ActiveRecord::Schema.define(version: 2019_06_04_172813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_cocktail_infos", force: :cascade do |t|
+    t.integer "api_cocktail_id"
+    t.string "name"
+    t.string "imageUrl"
+    t.text "instructions"
+    t.string "category"
+    t.string "alcoholic"
+    t.string "glass"
+    t.string "videoUrl"
+    t.string "ingredient_1"
+    t.string "ingredient_2"
+    t.string "ingredient_3"
+    t.string "ingredient_4"
+    t.string "ingredient_5"
+    t.string "ingredient_6"
+    t.string "ingredient_7"
+    t.string "ingredient_8"
+    t.string "ingredient_9"
+    t.string "ingredient_10"
+    t.string "ingredient_11"
+    t.string "ingredient_12"
+    t.string "ingredient_13"
+    t.string "ingredient_14"
+    t.string "ingredient_15"
+    t.string "measurement_1"
+    t.string "measurement_2"
+    t.string "measurement_3"
+    t.string "measurement_4"
+    t.string "measurement_5"
+    t.string "measurement_6"
+    t.string "measurement_7"
+    t.string "measurement_8"
+    t.string "measurement_9"
+    t.string "measurement_10"
+    t.string "measurement_11"
+    t.string "measurement_12"
+    t.string "measurement_13"
+    t.string "measurement_14"
+    t.string "measurement_15"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cocktail_ingredients", force: :cascade do |t|
     t.integer "cocktail_id"
