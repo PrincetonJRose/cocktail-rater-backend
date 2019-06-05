@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    # before_action :authorize!, only: [:create, :update, :delete]
+    # before_action :authorize!, only: [:update, :delete]
 
     def create
         @user = User.new(user_params)
