@@ -1,4 +1,7 @@
 class CocktailsController < ApplicationController
+
+    # before_action :authorize!, only: [:create, :update, :delete]
+
     def index
         @cocktails = Cocktail.all
         render json: @cocktails, status: :ok
@@ -7,4 +10,5 @@ class CocktailsController < ApplicationController
     def show
         @cocktail = Cocktail.find(params[:id])
     end
+    
 end
