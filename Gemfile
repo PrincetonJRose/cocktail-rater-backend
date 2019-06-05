@@ -20,6 +20,8 @@ gem 'rest-client'
 gem 'json'
 # Using JWT for token encryption
 gem 'jwt'
+# Using dotenv for .env stuff
+gem 'dotenv-rails'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
