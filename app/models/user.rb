@@ -5,6 +5,7 @@ class User < ApplicationRecord
     has_many :reviews
     has_many :comments
     has_many :likes
+    has_many :cocktails
 
     validates :username, length: { in: 6..16 }
     validates :username, presence: true
