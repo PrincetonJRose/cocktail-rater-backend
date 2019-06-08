@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :api_cocktail_infos, only: [:index]
+  resources :api_cocktail_infos, only: [:index, :show]
   resources :cocktails, only: [:create, :update, :show, :delete, :index]
   resources :ingredients, only: [:create, :show, :delete, :index, :update]
   resources :comments, only: [:create, :update, :delete]
