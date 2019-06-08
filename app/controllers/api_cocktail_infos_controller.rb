@@ -6,10 +6,6 @@ class ApiCocktailInfosController < ApplicationController
 
     def show
         @cocktail = ApiCocktailInfo.find(params[:id])
-        @cocktail
-        @info = {}
-        
-
-        render json: @cocktail, status: :ok
+        render json: @cocktail.to_json(include: [:likes, :reviews=>{include: :comments}]), status: :ok
     end
 end
