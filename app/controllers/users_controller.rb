@@ -11,6 +11,11 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        @user = User.find(params[:id])
+        render json: @user.to_json(include: [:likes, :cocktails, :reviews=>{include: :comments}]), status: :ok
+    end
+
     private
 
     def user_params
