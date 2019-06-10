@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_08_212633) do
+ActiveRecord::Schema.define(version: 2019_06_10_215554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 2019_06_08_212633) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_name"
     t.index ["review_id"], name: "index_comments_on_review_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(version: 2019_06_08_212633) do
     t.integer "cocktail_id"
     t.integer "api_cocktail_id"
     t.integer "api_cocktail_info_id"
+    t.string "user_name"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -120,6 +122,8 @@ ActiveRecord::Schema.define(version: 2019_06_08_212633) do
     t.integer "api_cocktail_id"
     t.integer "cocktail_id"
     t.integer "api_cocktail_info_id"
+    t.float "rating"
+    t.string "user_name"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
