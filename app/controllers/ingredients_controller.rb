@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
 
-    before_action :authorize!, only: [:create, :update, :delete]
+    before_action :authorize!, only: [:create, :update, :destroy]
 
     def index
         @ingredients = Ingredient.all

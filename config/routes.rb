@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
   resources :api_cocktail_infos, only: [:index, :show]
-  resources :cocktails, only: [:create, :update, :show, :delete, :index]
-  resources :ingredients, only: [:create, :show, :delete, :index, :update]
-  resources :comments, only: [:create, :update, :delete]
-  resources :reviews, only: [:create, :update, :delete]
-  resources :users, only: [:create, :update, :show, :delete]
-  resources :likes, only: [:create, :delete]
+  resources :cocktails, only: [:create, :update, :show, :destroy, :index]
+  resources :ingredients, only: [:create, :show, :destroy, :index, :update]
+  resources :comments, only: [:create, :update, :destroy]
+  resources :reviews, only: [:create, :update, :destroy]
+  resources :users, only: [:create, :update, :show, :destroy]
+  resources :likes, only: [:create, :destroy]
 
   post "/login", to: "sessions#create", as: "login"
   post "/register", to: "users#create", as: "register"

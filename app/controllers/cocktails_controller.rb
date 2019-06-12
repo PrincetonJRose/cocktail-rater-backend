@@ -1,6 +1,6 @@
 class CocktailsController < ApplicationController
 
-    before_action :authorize!, only: [:create, :update, :delete]
+    before_action :authorize!, only: [:create, :update, :destroy]
 
     def index
         @cocktails = Cocktail.all
@@ -20,7 +20,7 @@ class CocktailsController < ApplicationController
 
     end
 
-    def delete
+    def destroy
 
     end
 
