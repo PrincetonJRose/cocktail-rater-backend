@@ -4,7 +4,8 @@ class ReviewsController < ApplicationController
 
     def create
         @review = Review.new(review_params)
-        if @review.save!
+        @review.user_id = current_user.id
+        if @review.save
             getCocktail(@review)
         else
             render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
@@ -16,7 +17,7 @@ class ReviewsController < ApplicationController
         if current_user.id == @review.user_id
             @review.content = review_params[:content]
             @review.rating = review_params[:rating]
-            if @review.save!
+            if @review.save
                 getCocktail(@review)
             else
                 render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
