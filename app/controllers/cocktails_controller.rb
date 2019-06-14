@@ -4,7 +4,7 @@ class CocktailsController < ApplicationController
 
     def index
         @cocktails = Cocktail.all
-        render json: @cocktails, status: :ok
+        render json: @cocktails.to_json(include: [:ingredients, :cocktail_ingredients]), status: :ok
     end
 
     def show
