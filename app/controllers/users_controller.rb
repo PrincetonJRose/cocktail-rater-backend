@@ -4,8 +4,9 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
+        @user.img_url = "https://www.gatewaychamber.com/Content/Uploads/ProfilePictures/default-user.png"
         if @user.save
-            render json:  @user.to_json(only: [:username, :email, :first_name, :last_name, :birthdate, :bio],include: [:likes, :cocktails, :reviews=>{include: :comments}]), status: :created
+            render json:  @user.to_json(only: [:username, :email, :first_name, :last_name, :birthdate, :bio, :img_url],include: [:likes, :cocktails, :reviews=>{include: :comments}]), status: :created
         else
             render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
         end
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        render json: @user.to_json(only: [:username, :email, :first_name, :last_name, :birthdate, :bio],include: [:likes, :cocktails, :reviews=>{include: :comments}]), status: :ok
+        render json: @user.to_json(only: [:username, :email, :first_name, :last_name, :birthdate, :bio, :img_url],include: [:likes, :cocktails, :reviews=>{include: :comments}]), status: :ok
     end
 
     def update
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :bio, :password_digest)
+        params.require(:user).permit(:username, :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :bio, :password_digest, :img_url)
     end
 
 end
