@@ -5,6 +5,8 @@ class ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
         @review.user_id = current_user.id
+        @user = User.find(current_user.id)
+        @review.user_avatar_image = @user.img_url
         if @review.save
             getCocktail(@review)
         else
@@ -15,6 +17,8 @@ class ReviewsController < ApplicationController
     def update
         @review = Review.find(params[:id])
         if current_user.id == @review.user_id
+            @user = User.find(current_user.id)
+            @review.user_avatar_image = @user.img_url
             @review.content = review_params[:content]
             @review.rating = review_params[:rating]
             if @review.save
