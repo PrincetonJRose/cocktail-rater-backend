@@ -44,10 +44,10 @@ class ReviewsController < ApplicationController
     def getCocktail(review)
         if review.api_cocktail_info_id
             @cocktail = ApiCocktailInfo.find(@review.api_cocktail_info_id)
-            render json: @cocktail.to_json(include: [:likes, :reviews=>{include: :comments}]), status: :ok
+            render json: @cocktail.to_json(include: [:likes, :reviews=>{include: :comments, :users=>{only: [:username, :user_id, :img_url]}}]), status: :ok
         else
             @cocktail = Cocktail.find(@review.cocktail_id)
-            render json: @cocktail.to_json(include: [:likes, :ingredients, :cocktail_ingredients, :reviews=>{include: :comments}]), status: :ok
+            render json: @cocktail.to_json(include: [:likes, :ingredients, :cocktail_ingredients, :reviews=>{include: :comments, :users=>{only: [:username, :user_id, :img_url]}}]), status: :ok
         end
     end
 
