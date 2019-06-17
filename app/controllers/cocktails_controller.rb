@@ -13,7 +13,19 @@ class CocktailsController < ApplicationController
     end
 
     def create
+        @cocktail = Cocktail.new
+        if cocktail_params[:ingredients].length > 0 or cocktail_params[:measurements].length > 0
+            @cocktail.name = cocktail_params[:name]
+            @cocktail.videoUrl = cocktail_params[:videoUrl]
+            @cocktail.imageUrl = cocktail_params[:imageUrl]
+            @cocktail.glass = cocktail_params[:glass]
+            @cocktail.instructions = cocktail_params[:instructions]
+            @cocktail.user_id = current_user.id
+            @cocktail.alcoholic = cocktail_params[:alcoholic]
 
+        else
+            render json: { errors: ["You must have ingredients and measurements for them."] }, status: :unprocessable_entity
+        end
     end
 
     def update
@@ -27,7 +39,7 @@ class CocktailsController < ApplicationController
     private
 
     def cocktail_params
-        params.require(:cocktail).permit(:user_id, :name, :instructions, :imageUrl, :videoUrl, :glass, :alcoholic, :category)
+        params.require(:cocktail).permit(:user_id, :name, :instructions, :imageUrl, :videoUrl, :glass, :alcoholic, :category, :ingredients, :measurements)
     end
     
 end
