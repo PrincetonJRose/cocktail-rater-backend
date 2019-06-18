@@ -20,6 +20,7 @@ class CocktailsController < ApplicationController
                 params[:cocktail_ingredients].each do |i|
                     @ci = CocktailIngredient.new(user_id: @cocktail.user_id, ingredient_id: i[:ingredient], measurement: i[:measurement])
                     @ci.save
+                end
                     render json: @cocktails.to_json(include: [:ingredients, :cocktail_ingredients]), status: :ok
             else
                 render json: { errors: @cocktail.errors.full_messages }, status: :unprocessable_entity
