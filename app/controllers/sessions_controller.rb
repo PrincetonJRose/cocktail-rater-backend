@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
     
-    def create
+    def create  
         @user = User.find_by(email: params[:email])
         if @user and @user.authenticate(params[:password])
             jwt_user = JWT.encode({ user_id: @user.id }, ENV["JWT_AUTH_KEY"], "HS256")

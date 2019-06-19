@@ -25,6 +25,7 @@ class UsersController < ApplicationController
                 @user.last_name = user_params[:last_name]
                 @user.img_url = user_params[:img_url]
                 @user.bio = user_params[:bio]
+                @user.email = user_params[:email]
                 @user.username = user_params[:username]
                 if @user.save
                     render json: @user.to_json(only: [:username, :email, :first_name, :last_name, :birthdate, :bio, :img_url, :created_at],include: [:likes, :cocktails, :reviews=>{include: :comments}]), status: :ok
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :bio, :password_digest, :img_url)
+        params.require(:user).permit(:username, :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :bio, :img_url)
     end
 
 end
