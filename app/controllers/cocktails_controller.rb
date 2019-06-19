@@ -16,9 +16,9 @@ class CocktailsController < ApplicationController
         @cocktail = Cocktail.new(cocktail_params)
         @cocktail.user_id = current_user.id
         if params[:ingredients].length > 0
-            if cocktail.save
+            if @cocktail.save
                 for index in 0...params[:ingredients].length
-                    @ci = CocktailIngredient.new(cocktail_id: cocktail.id, ingredient_id: params[:ingredients][index][:id], measurement: params[:measurements][index])
+                    @ci = CocktailIngredient.new(cocktail_id: @cocktail.id, ingredient_id: params[:ingredients][index][:id], measurement: params[:measurements][index])
                     @ci.save
                 end
                 @cocktails = Cocktail.all
@@ -36,9 +36,9 @@ class CocktailsController < ApplicationController
     def update
         @cocktail = Cocktail.find(params[:id])
         if params[:ingredients].length > 0
-            if cocktail.save
+            if @cocktail.save
                 for index in 0...params[:ingredients].length
-                    @ci = CocktailIngredient.new(cocktail_id: cocktail.id, ingredient_id: params[:ingredients][index][:id], measurement: params[:measurements][index])
+                    @ci = CocktailIngredient.new(cocktail_id: @cocktail.id, ingredient_id: params[:ingredients][index][:id], measurement: params[:measurements][index])
                     @ci.save
                 end
                 @cocktails = Cocktail.all
