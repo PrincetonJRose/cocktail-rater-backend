@@ -35,11 +35,25 @@ class CocktailsController < ApplicationController
 
     def update
         @cocktail = Cocktail.find(params[:id])
+        @cocktail.name = cocktail_params[:name]
+        @cocktail.instructions = cocktail_params[:instructions]
+        @cocktail.videoUrl = cocktail_params[:videoUrl]
+        @cocktail.imageUrl = cocktail_params[:imageUrl]
+        @cocktail.glass = cocktail_params[:glass]
+        @cocktail.category = cocktail_params[:category]
+        @cocktail.alcoholic = cocktail_params[:alcoholic]
         if params[:ingredients].length > 0
             if @cocktail.save
                 for index in 0...params[:ingredients].length
-                    @ci = CocktailIngredient.new(cocktail_id: @cocktail.id, ingredient_id: params[:ingredients][index][:id], measurement: params[:measurements][index])
-                    @ci.save
+                    @ci = CocktailIngredient.find_by(id: params[:cocktail_ingredients][index][:id])
+                    if @ci
+                        @ci.ingredient_id = params[:ingredients][index][:id]
+                        @ci.measurement = params[:measurements][index]
+                        @ci.save
+                    else
+                        @ci = CocktailIngredient.new(cocktail_id: @cocktail.id, ingredient_id: params[:ingredients][index][:id], measurement: params[:measurements][index])
+                        @ci.save
+                    end
                 end
                 @cocktails = Cocktail.all
                     render json: @cocktails.to_json(include: [:ingredients, :cocktail_ingredients]), status: :ok
@@ -54,10 +68,6 @@ class CocktailsController < ApplicationController
     end
 
     def destroy
-
-    end
-
-    def save_cocktail(cocktail, params)
 
     end
 
