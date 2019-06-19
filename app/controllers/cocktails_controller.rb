@@ -37,7 +37,7 @@ class CocktailsController < ApplicationController
         @cocktail = Cocktail.find(params[:id])
         @cocktail.name = cocktail_params[:name]
         @cocktail.instructions = cocktail_params[:instructions]
-        @cocktail.videoUrl = cocktail_params[:videoUrl]
+        @cocktail.videoURL = cocktail_params[:videoUrl]
         @cocktail.imageUrl = cocktail_params[:imageUrl]
         @cocktail.glass = cocktail_params[:glass]
         @cocktail.category = cocktail_params[:category]
