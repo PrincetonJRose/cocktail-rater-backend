@@ -22,6 +22,7 @@ gem 'json'
 gem 'jwt'
 # Using dotenv for .env stuff
 gem 'dotenv-rails'
+gem 'rake'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
