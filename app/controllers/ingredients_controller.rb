@@ -8,7 +8,7 @@ class IngredientsController < ApplicationController
     end
 
     def show
-        @ingredient = Ingredient.find(params[:id])
+        @ingredient = Ingredient.find_by(id: params[:id])
         render json: @ingredient, status: :ok
     end
 

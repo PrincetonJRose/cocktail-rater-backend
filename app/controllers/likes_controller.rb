@@ -12,7 +12,7 @@ class LikesController < ApplicationController
     end
 
     def destroy
-        @like = Like.find(params[:id])
+        @like = Like.find_by(id: params[:id])
         if current_user.id == @like.user_id
             @like.destroy
             getCocktail(@like)

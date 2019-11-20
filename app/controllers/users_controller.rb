@@ -13,12 +13,12 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        @user = User.find_by(id: params[:id])
         render json: @user.to_json(only: [:username, :email, :first_name, :last_name, :birthdate, :bio, :img_url, :created_at],include: [:likes, :cocktails, :reviews=>{include: :comments}]), status: :ok
     end
 
     def update
-        @user = User.find(params[:id])
+        @user = User.find_by(id: params[:id])
         if @user.id == current_user.id
             if @user.authenticate(params[:password])
                 @user.first_name = user_params[:first_name]

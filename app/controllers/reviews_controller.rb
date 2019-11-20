@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
     end
 
     def update
-        @review = Review.find(params[:id])
+        @review = Review.find_by(id: params[:id])
         if current_user.id == @review.user_id
             @user = User.find(current_user.id)
             @review.user_avatar_image = @user.img_url
@@ -32,7 +32,7 @@ class ReviewsController < ApplicationController
     end
 
     def destroy
-        @review = Review.find(params[:id])
+        @review = Review.find_by(id: params[:id])
         if current_user.id == @review.user_id
             @review.destroy
             getCocktail(@review)

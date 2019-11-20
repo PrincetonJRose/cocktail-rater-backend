@@ -8,7 +8,7 @@ class CocktailsController < ApplicationController
     end
 
     def show
-        @cocktail = Cocktail.find(params[:id])
+        @cocktail = Cocktail.find_by(id: params[:id])
         render json: @cocktail.to_json(include: [:likes, :ingredients, :cocktail_ingredients, :reviews=>{include: :comments}]), status: :ok
     end
 
@@ -34,7 +34,7 @@ class CocktailsController < ApplicationController
     end
 
     def update
-        @cocktail = Cocktail.find(params[:id])
+        @cocktail = Cocktail.find_by(id: params[:id])
         @cocktail.name = cocktail_params[:name]
         @cocktail.instructions = cocktail_params[:instructions]
         @cocktail.videoURL = cocktail_params[:videoUrl]

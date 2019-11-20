@@ -15,9 +15,9 @@ class CommentsController < ApplicationController
     end
 
     def update
-        @comment = Comment.find(params[:id])
+        @comment = Comment.find_by(id: params[:id])
         if current_user.id == @comment.user_id
-            @user = User.find(current_user.id)
+            @user = User.find_by(id: current_user.id)
             @comment.user_avatar_image = @user.img_url
             @comment.content = comment_params[:content]
             if @comment.save
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find(params[:id])
+        @comment = Comment.find_by(id: params[:id])
         if current_user.id == @comment.user_id
             @comment.destroy
             getCocktail(@comment)
@@ -41,12 +41,12 @@ class CommentsController < ApplicationController
     end
 
     def getCocktail(comment)
-        @review = Review.find(comment.review_id)
+        @review = Review.find_by(id: comment.review_id)
         if @review.api_cocktail_info_id
-            @cocktail = ApiCocktailInfo.find(@review.api_cocktail_info_id)
+            @cocktail = ApiCocktailInfo.find_by(id: @review.api_cocktail_info_id)
             render json: @cocktail.to_json(include: [:likes, :reviews=>{include: :comments, :users=>{only: [:username, :user_id, :img_url]}}]), status: :ok
         else
-            @cocktail = Cocktail.find(@review.cocktail_id)
+            @cocktail = Cocktail.find_by(id: @review.cocktail_id)
             render json: @cocktail.to_json(include: [:likes, :ingredients, :cocktail_ingredients, :reviews=>{include: :comments, :users=>{only: [:username, :user_id, :img_url]}}]), status: :ok
         end
     end
